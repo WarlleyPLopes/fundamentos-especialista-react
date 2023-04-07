@@ -1,25 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
 
 function App() {
+  const [names, setNames] = useState([
+    'Warlley', 'Daniel', 'Marcos',
+    'Michel', 'Alex'
+  ])
+
+  useEffect(() => {
+    console.log('componente montado')
+    return () => {
+      console.log('componente foi desmontado')
+    }
+  }, [])
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+        <ul>
+          {
+            names.map((name, idx) => <li key={idx}>{name}</li>)
+          }
+        </ul>
+        <button
+          onClick={() => {
+            setNames([...names, 'jeremias'])
+          }}
         >
-          Learn React
-        </a>
+          adicionar jeremias
+        </button>
       </header>
-    </div>
+    </div >
   );
 }
 
